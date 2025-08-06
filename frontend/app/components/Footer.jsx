@@ -1,14 +1,13 @@
 "use client";
 
-import { FaGithub } from "react-icons/fa";
 import { MdEmail, MdPhone } from "react-icons/md";
 
 /**
  * A Footer component for the "Revolutionize Engineering" platform.
- * This component provides key information, partner logos, contact details,
- * and a link to the GitHub repository. It is styled with the "Futuristic Horizon"
- * theme and is fully responsive using Tailwind CSS. The background has been
- * updated to a slightly lighter shade for better visual distinction.
+ * This component provides key information, partner logos, and contact details.
+ * It is styled with the "Futuristic Horizon" theme and is fully responsive
+ * using Tailwind CSS. The background has been updated to a slightly lighter
+ * shade for better visual distinction, and the GitHub link/icon have been removed.
  */
 const Footer = () => {
   return (
@@ -58,20 +57,11 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Footer Bottom Section (Copyright and GitHub Link) */}
+      {/* Footer Bottom Section (Copyright) */}
       <div className="flex flex-col md:flex-row items-center justify-between text-neutral-500 mt-12 pt-8 border-t border-neutral-800">
         <p className="text-sm mb-4 md:mb-0">
-          © 2024 Revolutionize Engineering. All rights reserved.
+          © 2025 Revolutionize Engineering. All rights reserved.
         </p>
-        <a
-          href="https://github.com/placeholder-repo" // Placeholder GitHub URL
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 text-neutral-300 hover:text-[#00FFFF] transition-colors duration-300"
-        >
-          <FaGithub size={20} />
-          <span className="hover:underline">GitHub Repository</span>
-        </a>
       </div>
     </footer>
   );
