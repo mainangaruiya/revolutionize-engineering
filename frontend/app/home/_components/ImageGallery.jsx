@@ -5,7 +5,7 @@ import {
   AiOutlineProject,
   AiOutlineFileAdd,
   MdAssignment,
-} from "react-icons/ai"; // Keeping react-icons import as it was specified in the initial prompt
+} from "react-icons/ai";
 
 /**
  * A React component that displays a gallery of past project images
@@ -32,6 +32,23 @@ const ImageGallery = () => {
       alt: "Screenshot of Biz Mkononi app",
       caption:
         "Biz Mkononi: An AI-powered mobile app for SME business analytics.",
+    },
+    {
+      src: "https://placehold.co/600x400/1a1a1a/00FFFF?text=Soko+Beauty",
+      alt: "Screenshot of Soko Beauty app",
+      caption:
+        "Soko Beauty: Africa's First AI Powered Content Creation enabler in the beauty industry for Gen Zs.",
+    },
+    {
+      src: "https://placehold.co/600x400/1a1a1a/00FFFF?text=Feedacomrade",
+      alt: "Screenshot of Feedacomrade platform",
+      caption:
+        "Feedacomrade: A platform connecting students with food resources.",
+    },
+    {
+      src: "https://placehold.co/600x400/1a1a1a/00FFFF?text=BeeMultiscent",
+      alt: "Screenshot of BeeMultiscent smart diffuser",
+      caption: "BeeMultiscent: An IoT-powered smart diffuser.",
     },
   ];
 

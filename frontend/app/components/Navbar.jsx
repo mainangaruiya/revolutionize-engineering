@@ -9,11 +9,12 @@ import { FaBars, FaTimes } from "react-icons/fa";
  * It features a responsive design with a fixed position, a full-screen mobile
  * menu, and dynamic animations using Framer Motion. The styling now uses a
  * solid black background at all times, with a blur effect appearing on scroll,
- * and a sans-serif font. The mobile menu also covers the full screen.
+ * and a sans-serif font. The mobile menu also covers the full screen and
+ * includes a prominent close icon.
  */
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false); // Re-introducing isScrolled state
+  const [isScrolled, setIsScrolled] = useState(false);
 
   // Toggle the mobile menu's state
   const toggleMenu = () => {
@@ -134,12 +135,21 @@ const Navbar = () => {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            className="fixed inset-0 w-full h-screen bg-[#0A0A0A] bg-opacity-90 backdrop-blur-sm z-[51] flex flex-col items-center justify-center gap-8" // z-index increased for overlay
+            className="fixed inset-0 w-full h-screen bg-[#0A0A0A] bg-opacity-90 backdrop-blur-sm z-[51] flex flex-col items-center justify-center gap-8"
             variants={menuVariants}
             initial="hidden"
             animate="visible"
             exit="hidden"
           >
+            {/* Close button for mobile menu */}
+            <button
+              onClick={toggleMenu}
+              className="absolute top-6 right-6 text-white"
+              aria-label="Close navigation menu"
+            >
+              <FaTimes size={30} />
+            </button>
+
             {navLinks.map((link, index) => (
               <a
                 key={index}

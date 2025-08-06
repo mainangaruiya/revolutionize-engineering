@@ -12,7 +12,7 @@ const InnovatorsGallery = () => {
   // Data for the images, using placeholder sources.
   const images = [
     {
-      src: "/images/d2.jpg", // Updated image source
+      src: "/images/d4.jpg", // Updated image source
       alt: "Project image 1",
     },
     {
