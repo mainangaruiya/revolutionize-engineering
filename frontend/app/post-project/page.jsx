@@ -50,30 +50,23 @@ export default function PostProjectPage() {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           required
-          className="border p-3 rounded text-lg"
+          className="border-2 border-gray-300 p-3 rounded-lg text-lg bg-gray-50 focus:border-[#00FFFF] focus:ring-2 focus:ring-[#00FFFF] outline-none"
         />
         <textarea
           placeholder="Description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="border p-3 rounded text-lg"
+          className="border-2 border-gray-300 p-3 rounded-lg text-lg bg-gray-50 focus:border-[#00FFFF] focus:ring-2 focus:ring-[#00FFFF] outline-none"
+
         />
         <input
           type="text"
           placeholder="Goals"
           value={goals}
           onChange={(e) => setGoals(e.target.value)}
-          className="border p-3 rounded text-lg"
+          className="border-2 border-gray-300 p-3 rounded-lg text-lg bg-gray-50 focus:border-[#00FFFF] focus:ring-2 focus:ring-[#00FFFF] outline-none"
+
         />
-        <select
-          value={stage}
-          onChange={(e) => setStage(e.target.value)}
-          className="border p-3 rounded text-lg"
-        >
-          <option value="Idea">Idea</option>
-          <option value="Prototype">Prototype</option>
-          <option value="Production">Production</option>
-        </select>
         <button
           type="submit"
           className="bg-[#00FFFF] text-neutral-900 font-bold py-3 px-6 rounded-full text-lg hover:brightness-110 transition"
