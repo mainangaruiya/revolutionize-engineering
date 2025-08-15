@@ -13,12 +13,20 @@ import { FaArrowRight } from "react-icons/fa";
 const EmailSignup = () => {
   const [email, setEmail] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Placeholder for form submission logic.
-    // In a real application, you would handle this with an API call.
-    console.log("Email submitted:", email);
-    setEmail(""); // Clear the input field after submission
+    try {
+      const res = await fetch('http://localhost:5000/api/email-signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json();
+      alert(data.message);
+      setEmail('');
+    } catch (err) {
+      alert('Something went wrong!');
+    }
   };
 
   // Animation variants for the container's entrance and hover effects
