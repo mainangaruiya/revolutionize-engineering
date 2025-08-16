@@ -5,13 +5,17 @@ const projectSchema = new mongoose.Schema({
   description: String,
   goals: String,
   stage: { type: String, default: 'Idea' },
-  status: { type: String, default: 'Pending' }, // Pending, Approved, Rejected
+  status: { 
+    type: String, 
+    enum: ['Pending', 'Approved', 'Rejected'], 
+    default: 'Pending' 
+  },
   creator: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  collaborators: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   approvedAt: Date,
   rejectedAt: Date,
-  editingLocked: { type: Boolean, default: false },
-  createdAt: { type: Date, default: Date.now }
-});
+  editingLocked: { type: Boolean, default: false }
+}, { timestamps: true });
 
 const Project = mongoose.model('Project', projectSchema);
 export default Project;

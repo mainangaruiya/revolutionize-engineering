@@ -1,0 +1,66 @@
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modalCard {
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  max-width: 400px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: #555;
+  transition: color 0.2s;
+}
+
+.closeButton:hover {
+  color: #00FFFF;
+}
+
+.inputField {
+  border: 1px solid #ccc;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  color: #000; /* text visible */
+  background: #fff;
+}
+
+.inputField::placeholder {
+  color: #666; /* placeholder visible */
+}
+
+.submitButton {
+  background-color: #00FFFF;
+  color: #000;
+  font-weight: bold;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-size: 1rem;
+  transition: filter 0.2s;
+}
+
+.submitButton:hover {
+  filter: brightness(1.1);
+}
+
+.registerLink {
+  color: #00FFFF;
+}
+
+.registerLink:hover {
+  text-decoration: underline;
+}
