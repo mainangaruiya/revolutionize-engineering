@@ -18,7 +18,9 @@ const Auth = () => {
   // State for form input values
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState("");
+  const [role, setRole] = useState("student");
 
   // State to handle UI feedback (loading, error, success messages)
   const [loading, setLoading] = useState(false);
@@ -81,9 +83,14 @@ const Auth = () => {
     setLoading(true);
 
     // Simple form validation
-    if (!name || !email || !password) {
+    if (!name || !email || !password || !confirmPassword || !role) {
       setLoading(false);
       setError("Please fill out all fields.");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
       return;
     }
 
@@ -169,6 +176,27 @@ const Auth = () => {
             />
           </div>
 
+          {/* {Role for registration} */}
+          {!isLogin && (
+            <div>
+              <label className="block text-gray-400 mb-2" htmlFor="role">
+                Role
+              </label>
+              <select
+                id="role"
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
+                className="w-full p-3 rounded-lg bg-neutral-800 border border-neutral-700 text-white focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
+                disabled={loading}
+              >
+                <option value="student">Student</option>
+                <option value="collaborator">Collaborator</option>
+                <option value="innovator">Innovator</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+          )}
+
           {/* Password input (for both forms) */}
           <div className="mb-6">
             <label className="block text-gray-400 mb-2" htmlFor="password">
@@ -183,6 +211,25 @@ const Auth = () => {
               disabled={loading}
             />
           </div>
+
+          {!isLogin && (
+            <div className="mb-6">
+            <label
+              className="block text-gray-400 mb-2"
+              htmlFor="confirmPassword"
+            >
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              id="confirmPassword"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              className="w-full p-3 rounded-lg bg-neutral-800 border border-neutral-700 text-white focus:outline-none focus:ring-2 focus:ring-[#00FFFF]"
+              disabled={loading}
+            />
+          </div>
+          )}
 
           {/* Submit button */}
           <button

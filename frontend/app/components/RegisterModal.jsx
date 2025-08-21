@@ -9,12 +9,19 @@ export default function RegisterModal({ isOpen, onClose, onSwitchToLogin }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [role, setRole] = useState("student");
   const [error, setError] = useState("");
 
   const handleRegister = async (e) => {
     e.preventDefault();
     setError("");
+
+    // ✅ Password match validation
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
 
     try {
       const res = await fetch("http://localhost:5000/api/auth/register", {
@@ -28,6 +35,13 @@ export default function RegisterModal({ isOpen, onClose, onSwitchToLogin }) {
       if (!res.ok) {
         throw new Error(data.message || "Registration failed");
       }
+
+      // ✅ Reset form after successful registration
+      setName("");
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
+      setRole("student");
 
       onClose();
       onSwitchToLogin();
@@ -84,6 +98,14 @@ export default function RegisterModal({ isOpen, onClose, onSwitchToLogin }) {
                 className={styles.inputField}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <input
+                type="password"
+                placeholder="Confirm Password"
+                className={styles.inputField}
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
                 required
               />
               <select
