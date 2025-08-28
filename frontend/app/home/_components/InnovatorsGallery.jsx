@@ -2,60 +2,32 @@
 
 import { motion } from "framer-motion";
 
-/**
- * A React component that displays a gallery of images without text or titles.
- * Designed for the "Revolutionize Engineering" platform following the
- * "Futuristic Horizon" theme, it features a responsive grid layout,
- * square images with rounded corners, and dynamic hover and entrance animations.
- */
 const InnovatorsGallery = () => {
-  // Data for the images, using placeholder sources.
   const images = [
-    {
-      src: "/images/d4.jpg", // Updated image source
-      alt: "Project image 1",
-    },
-    {
-      src: "/images/d1.jpg",
-      alt: "Project image 2",
-    },
-    {
-      src: "/images/d3.jpg",
-      alt: "Project image 3",
-    },
+    { src: "/images/d4.jpg", alt: "Project image 1" },
+    { src: "/images/d1.jpg", alt: "Project image 2" },
+    { src: "/images/d3.jpg", alt: "Project image 3" },
   ];
 
-  // Animation variants for the container to fade in the entire section.
+  // Parent animation: handles stagger (cascade effect)
   const containerVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      y: 0,
       transition: {
-        delayChildren: 0.3, // Delay before children start animating
-        staggerChildren: 0.2, // Stagger delay between each child
+        delayChildren: 0.2, // wait a bit before children start
+        staggerChildren: 0.3, // time gap between each card
       },
     },
   };
 
-  // Animation variants for each individual image card's entrance and hover effects.
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
+  // Each card fade/slide in
+  const cardVariants = {
+    hidden: { y: 40, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    },
-    hover: {
-      scale: 1.05, // Slightly scale up on hover
-      boxShadow: "0 0 25px rgba(0, 255, 255, 0.4)", // Glowing border effect
-      transition: {
-        duration: 0.3,
-        ease: "easeInOut",
-      },
+      transition: { duration: 0.7, ease: "easeOut" },
     },
   };
 
@@ -64,34 +36,55 @@ const InnovatorsGallery = () => {
       className="bg-[#0A0A0A] px-4 py-20 font-sans text-white"
       variants={containerVariants}
       initial="hidden"
-      whileInView="visible" // Animate when the section comes into view
-      viewport={{ once: true, amount: 0.3 }} // Only animate once when 30% in view
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
     >
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-3 gap-12"
+          variants={containerVariants}
+        >
           {images.map((image, index) => (
             <motion.div
               key={index}
-              className="flex flex-col items-center text-center bg-neutral-900 rounded-2xl overflow-hidden shadow-xl cursor-pointer"
-              variants={itemVariants} // Apply itemVariants for entrance and hover
-              whileHover="hover"
-              // Framer Motion's staggerChildren on the parent will handle initial/visible for children
+              className="relative flex flex-col items-center text-center bg-neutral-900 rounded-2xl overflow-hidden shadow-xl cursor-pointer"
+              variants={cardVariants}
+              whileHover={{
+                y: -6, // lift effect
+                boxShadow: "0 12px 25px rgba(0, 255, 255, 0.25)", // cyan glow
+                transition: { duration: 0.3, ease: "easeInOut" },
+              }}
             >
-              <img
-                src={image.src}
-                alt={image.alt}
-                className="w-full h-full object-cover rounded-2xl"
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src =
-                    "https://placehold.co/400x400/666666/ffffff?text=Image+Error";
-                }}
-              />
+              <PanImage src={image.src} alt={image.alt} />
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </motion.section>
+  );
+};
+
+// 🔹 Smooth zoom-on-hover image
+const PanImage = ({ src, alt }) => {
+  return (
+    <motion.img
+      src={src}
+      alt={alt}
+      className="w-full h-full object-cover rounded-2xl"
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      whileHover={{
+        scale: 1.08,
+        transition: { duration: 0.3, ease: "easeInOut" },
+      }}
+      onError={(e) => {
+        e.target.onerror = null;
+        e.target.src =
+          "https://placehold.co/400x400/666666/ffffff?text=Image+Error";
+      }}
+    />
   );
 };
 

@@ -5,6 +5,7 @@ import CtaButtons from './_components/CtaButtons'
 import EmailSignup from './_components/EmailSignup'
 import ImageGallery from './_components/ImageGallery'
 import InnovatorsGallery from './_components/InnovatorsGallery'
+import PartnersSection from './_components/Partners'
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
       <InnovatorsGallery />
       <CtaButtons />
       <ImageGallery />
+      <PartnersSection id="partners" />
       <EmailSignup />
     </>
   );

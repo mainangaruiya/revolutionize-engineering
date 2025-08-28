@@ -19,14 +19,14 @@ const CtaButtons = () => {
       title: "View Listed Projects",
       description:
         "Explore a wide range of innovative projects and find your next challenge.",
-      href: "/projects", // Example URL for the projects page
+      href: "/view-projects", // Example URL for the projects page
     },
     {
       icon: <MdAssignment size={40} className="text-[#00FFFF]" />,
       title: "Apply to Work",
       description:
         "Apply for hands-on experience and collaborate on industry-led solutions.",
-      href: "/application", // Example URL for the application page
+      href: "/apply-project", // Example URL for the application page
     },
     {
       icon: <AiOutlineFileAdd size={40} className="text-[#00FFFF]" />,

@@ -2,32 +2,17 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
-/**
- * The main navigation bar for the "Revolutionize Engineering" platform.
- * It features a logo, a set of navigation links, and dynamic buttons for
- * user authentication and project posting. The navbar is responsive,
- * changes its appearance on scroll, and includes a mobile-first menu.
- * It uses localStorage to persist user authentication state.
- */
 const Navbar = () => {
-  // State for controlling the mobile menu's open/close status
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  // State to track if the page has been scrolled past a certain point
   const [isScrolled, setIsScrolled] = useState(false);
-  // State to store the authenticated user's data
   const [user, setUser] = useState(null);
-  // State to control the visibility of the user dropdown menu
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [tooltipVisible, setTooltipVisible] = useState(false); // NEW state for tooltip
 
-  // Toggles the mobile menu's state
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-  /**
-   * Handles the user logout process.
-   * It removes the authentication token and user data from localStorage,
-   * resets the user state, and hides the user menu.
-   */
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
@@ -35,10 +20,6 @@ const Navbar = () => {
     setShowUserMenu(false);
   };
 
-  /**
-   * Effect hook to load user data from localStorage on component mount.
-   * This ensures the user's logged-in state is maintained across page reloads.
-   */
   useEffect(() => {
     const savedUser = localStorage.getItem("user");
     if (savedUser) {
@@ -46,17 +27,11 @@ const Navbar = () => {
         const parsedUser = JSON.parse(savedUser);
         setUser(parsedUser);
       } catch {
-        // If parsing fails, remove invalid user data
         localStorage.removeItem("user");
       }
     }
   }, []);
 
-  /**
-   * Effect hook to handle the scroll event.
-   * It updates the `isScrolled` state based on the scroll position,
-   * enabling visual changes to the navbar (e.g., backdrop-blur).
-   */
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -65,7 +40,6 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Array of navigation links
   const navLinks = [
     { name: "Projects", href: "#projects" },
     { name: "Events", href: "#events" },
@@ -73,40 +47,27 @@ const Navbar = () => {
     { name: "About", href: "#about" },
   ];
 
-  // Animation variants for the mobile menu
   const menuVariants = {
     hidden: { y: "-100%", transition: { duration: 0.5, ease: "easeInOut" } },
     visible: { y: "0%", transition: { duration: 0.5, ease: "easeInOut" } },
   };
 
-  // Animation variants for link hover effects
   const linkHoverVariants = {
     hover: { color: "#00FFFF", transition: { duration: 0.2 } },
   };
 
-  // Inline SVG for the hamburger menu icon
   const BarsIcon = ({ size = 24 }) => (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="currentColor"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
       <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path>
     </svg>
   );
 
-  // Inline SVG for the times/close icon
   const TimesIcon = ({ size = 24 }) => (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="currentColor"
-    >
-      <path d="m16.192 6.31-4.243 4.242-4.242-4.242-1.414 1.414 4.242 4.243-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414-4.242-4.242 4.242-4.243z"></path>
+    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+      <path d="m16.192 6.31-4.243 4.242-4.242-4.242-1.414 1.414 
+               4.242 4.243-4.242 4.242 1.414 1.414 
+               4.242-4.242 4.243 4.242 1.414-1.414 
+               -4.242-4.242 4.242-4.243z"></path>
     </svg>
   );
 
@@ -122,14 +83,8 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
           <a href="/home" className="flex items-center gap-3">
-            <img
-              src="/images/logo.png"
-              alt="Logo"
-              className="h-10 w-10 rounded-full object-cover"
-            />
-            <span className="text-2xl font-bold tracking-wide">
-              Revolutionize Engineering
-            </span>
+            <img src="/images/logo.png" alt="Logo" className="h-10 w-10 rounded-full object-cover" />
+            <span className="text-2xl font-bold tracking-wide">Revolutionize Engineering</span>
           </a>
 
           {/* Desktop Nav */}
@@ -138,7 +93,7 @@ const Navbar = () => {
               <motion.a
                 key={index}
                 href={link.href}
-                className="hover:underline transition-colors duration-300"
+                className="hover: transition-colors duration-300"
                 variants={linkHoverVariants}
                 whileHover="hover"
               >
@@ -149,12 +104,46 @@ const Navbar = () => {
               <>
                 <motion.a
                   href="/post-project"
-                  className="bg-[#00FFFF] text-neutral-900 font-bold py-2 px-6 rounded-full transition-colors duration-300 hover:bg-white"
-                  whileHover={{ scale: 1.05 }}
+                  className="relative inline-flex items-center gap-2 bg-[#0A0A0A] text-neutral-100 font-bold py-2 px-6 rounded-full transition-colors duration-300"
+                  whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
+                  onMouseEnter={() => setTooltipVisible(true)}
+                  onMouseLeave={() => setTooltipVisible(false)}
                 >
-                  Post a Project
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="transition-colors duration-300 hover:fill-[#00FFFF]"
+                  >
+                    <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 
+                             10-10 10-10-4.486-10-10 
+                             4.486-10 10-10zm0-2c-6.627 0-12 
+                             5.373-12 12s5.373 12 12 12 
+                             12-5.373 12-12-5.373-12-12-12zm6 
+                             13h-5v5h-2v-5h-5v-2h5v-5h2v5h5v2z" />
+                  </svg>
+
+                  {/* Tooltip with AnimatePresence */}
+                  <AnimatePresence>
+                    {tooltipVisible && (
+                      <motion.span
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 8 }}
+                        transition={{ duration: 0.25 }}
+                        className="absolute top-full left-1/2 -translate-x-1/2 mt-2 
+                          bg-neutral-900 text-neutral-300 text-xs font-normal 
+                          px-3 py-1 rounded-md whitespace-nowrap shadow-lg"
+                      >
+                        Post a new project
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
                 </motion.a>
+
                 <div className="relative">
                   <button
                     onClick={() => setShowUserMenu(!showUserMenu)}
@@ -202,10 +191,7 @@ const Navbar = () => {
               animate="visible"
               exit="hidden"
             >
-              <button
-                onClick={toggleMenu}
-                className="absolute top-6 right-6 text-white"
-              >
+              <button onClick={toggleMenu} className="absolute top-6 right-6 text-white">
                 <TimesIcon size={30} />
               </button>
               {navLinks.map((link, index) => (
