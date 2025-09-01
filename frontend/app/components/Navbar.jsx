@@ -9,7 +9,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [user, setUser] = useState(null);
   const [showUserMenu, setShowUserMenu] = useState(false);
-  const [tooltipVisible, setTooltipVisible] = useState(false); // NEW state for tooltip
+  const [tooltipVisible, setTooltipVisible] = useState(false);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -64,10 +64,12 @@ const Navbar = () => {
 
   const TimesIcon = ({ size = 24 }) => (
     <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-      <path d="m16.192 6.31-4.243 4.242-4.242-4.242-1.414 1.414 
+      <path
+        d="m16.192 6.31-4.243 4.242-4.242-4.242-1.414 1.414 
                4.242 4.243-4.242 4.242 1.414 1.414 
                4.242-4.242 4.243 4.242 1.414-1.414 
-               -4.242-4.242 4.242-4.243z"></path>
+               -4.242-4.242 4.242-4.243z"
+      ></path>
     </svg>
   );
 
@@ -118,12 +120,14 @@ const Navbar = () => {
                     fill="currentColor"
                     className="transition-colors duration-300 hover:fill-[#00FFFF]"
                   >
-                    <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 
-                             10-10 10-10-4.486-10-10 
-                             4.486-10 10-10zm0-2c-6.627 0-12 
-                             5.373-12 12s5.373 12 12 12 
-                             12-5.373 12-12-5.373-12-12-12zm6 
-                             13h-5v5h-2v-5h-5v-2h5v-5h2v5h5v2z" />
+                    <path
+                      d="M12 2c5.514 0 10 4.486 10 10s-4.486 
+                 10-10 10-10-4.486-10-10 
+                 4.486-10 10-10zm0-2c-6.627 0-12 
+                 5.373-12 12s5.373 12 12 12 
+                 12-5.373 12-12-5.373-12-12-12zm6 
+                 13h-5v5h-2v-5h-5v-2h5v-5h2v5h5v2z"
+                    />
                   </svg>
 
                   {/* Tooltip with AnimatePresence */}
@@ -135,8 +139,8 @@ const Navbar = () => {
                         exit={{ opacity: 0, y: 8 }}
                         transition={{ duration: 0.25 }}
                         className="absolute top-full left-1/2 -translate-x-1/2 mt-2 
-                          bg-neutral-900 text-neutral-300 text-xs font-normal 
-                          px-3 py-1 rounded-md whitespace-nowrap shadow-lg"
+              bg-neutral-900 text-neutral-300 text-xs font-normal 
+              px-3 py-1 rounded-md whitespace-nowrap shadow-lg"
                       >
                         Post a new project
                       </motion.span>
@@ -144,15 +148,29 @@ const Navbar = () => {
                   </AnimatePresence>
                 </motion.a>
 
-                <div className="relative">
+                {/* Profile + dropdown */}
+                <div className="relative flex items-center gap-3">
                   <button
                     onClick={() => setShowUserMenu(!showUserMenu)}
-                    className="font-bold hover:text-[#00FFFF]"
+                    className="flex items-center gap-2 font-bold hover:text-[#00FFFF]"
                   >
-                    {user.name}
+                    <span>{user.name}</span>
+                    <img
+                      src={user.profilePic || "/images/R.png"}
+                      alt="Profile"
+                      className="w-8 h-8 rounded-full object-cover border border-neutral-600"
+                    />
                   </button>
+
                   {showUserMenu && (
-                    <div className="absolute right-0 mt-2 bg-white text-black rounded shadow-lg w-32">
+                    <div className="absolute right-0 top-full mt-2 bg-black text-white rounded shadow-lg w-40 hover:text-black">
+                      <Link
+                        href="/user-profile"
+                        className="block w-full text-left px-4 py-2 hover:bg-gray-200"
+                        onClick={() => setShowUserMenu(false)}
+                      >
+                        Profile
+                      </Link>
                       <button
                         onClick={handleLogout}
                         className="block w-full text-left px-4 py-2 hover:bg-gray-200"
@@ -191,7 +209,10 @@ const Navbar = () => {
               animate="visible"
               exit="hidden"
             >
-              <button onClick={toggleMenu} className="absolute top-6 right-6 text-white">
+              <button
+                onClick={toggleMenu}
+                className="absolute top-6 right-6 text-white"
+              >
                 <TimesIcon size={30} />
               </button>
               {navLinks.map((link, index) => (
@@ -215,6 +236,13 @@ const Navbar = () => {
                   </a>
                   <div className="flex flex-col items-center gap-4">
                     <span className="text-white text-2xl">{user.name}</span>
+                    <Link
+                      href="/user-profile"
+                      className="text-[#00FFFF] text-lg"
+                      onClick={toggleMenu}
+                    >
+                      Profile
+                    </Link>
                     <button
                       onClick={() => {
                         handleLogout();

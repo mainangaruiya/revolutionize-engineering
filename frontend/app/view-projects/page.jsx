@@ -91,7 +91,7 @@ export default function ViewProjects() {
       </section>
       <section className="max-w-6xl mx-auto px-4 pt-28 pb-12">
         <h1 className="text-4xl md:text-5xl font-extrabold">
-          Open <span className="text-[#00FFFF]">Projects</span>
+          Listed <span className="text-[#00FFFF]">Projects</span>
         </h1>
         <p className="mt-3 text-neutral-300">
           Browse projects and pick one that matches your skills & interests.
