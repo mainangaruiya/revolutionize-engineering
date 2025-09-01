@@ -101,7 +101,7 @@ const ImageGallery = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {projects.map((project, index) => (
-            <a href={project.href}>
+            <a href={project.href}key={index}>
             <motion.div
               key={index}
               className="bg-neutral-900 rounded-2xl overflow-hidden shadow-xl cursor-pointer"
