@@ -7,16 +7,37 @@ import ImageGallery from './_components/ImageGallery'
 import InnovatorsGallery from './_components/InnovatorsGallery'
 import PartnersSection from './_components/Partners'
 
+
 const Home = () => {
   return (
     <>
-      <Hero />
-      <HowItWorks />
-      <InnovatorsGallery />
-      <CtaButtons />
-      <ImageGallery />
-      <PartnersSection id="partners" />
-      <EmailSignup />
+      <section id="hero" className="scroll-mt-20">
+        <Hero />
+      </section>
+
+      <section id="projects" className="scroll-mt-20">
+        <HowItWorks />
+      </section>
+
+      <section id="innovators" className="scroll-mt-20">
+        <InnovatorsGallery />
+      </section>
+
+      <section id="cta" className="scroll-mt-20">
+        <CtaButtons />
+      </section>
+
+      <section id="events" className="scroll-mt-20">
+        <ImageGallery />
+      </section>
+
+      <section id="partners" className="scroll-mt-20">
+        <PartnersSection />
+      </section>
+
+      <section id="about" className="scroll-mt-20">
+        <EmailSignup />
+      </section>
     </>
   );
 }

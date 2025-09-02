@@ -1,12 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 export default function ApplyProjectPage() {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
+  // autofilled user data
+  const [user, setUser] = useState({ name: "", email: "" });
+
+  useEffect(() => {
+    // Load from localStorage (mock user from Auth)
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      try {
+        setUser(JSON.parse(storedUser));
+      } catch {
+        setUser({ name: "", email: "" });
+      }
+    }
+  }, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -66,8 +80,9 @@ export default function ApplyProjectPage() {
                   <input
                     id="name"
                     type="text"
-                    required
-                    className="w-full rounded-xl bg-neutral-950 border border-neutral-800 focus:border-[#00FFFF] focus:ring-2 focus:ring-[#00FFFF]/30 px-4 py-3 outline-none"
+                    value={user.name}
+                    readOnly
+                    className="w-full rounded-xl bg-neutral-950 border border-neutral-800 focus:border-[#00FFFF] focus:ring-2 focus:ring-[#00FFFF]/30 px-4 py-3 outline-none text-neutral-600 cursor-not-allowed"
                     placeholder="Jane Doe"
                   />
                 </div>
@@ -79,8 +94,9 @@ export default function ApplyProjectPage() {
                   <input
                     id="email"
                     type="email"
-                    required
-                    className="w-full rounded-xl bg-neutral-950 border border-neutral-800 focus:border-[#00FFFF] focus:ring-2 focus:ring-[#00FFFF]/30 px-4 py-3 outline-none"
+                    value={user.email}
+                    readOnly
+                    className="w-full rounded-xl bg-neutral-950 border border-neutral-800 focus:border-[#00FFFF] focus:ring-2 focus:ring-[#00FFFF]/30 px-4 py-3 outline-none text-neutral-600 cursor-not-allowed"
                     placeholder="jane@example.com"
                   />
                 </div>
@@ -129,8 +145,9 @@ export default function ApplyProjectPage() {
                 <input
                   id="skills"
                   type="text"
-                  className="w-full rounded-xl bg-neutral-950 border border-neutral-800 focus:border-[#00FFFF] focus:ring-2 focus:ring-[#00FFFF]/30 px-4 py-3 outline-none"
-                  placeholder="e.g., React, Python, CAD, MATLAB, ROS"
+                  value={user.skills}
+                  readOnly
+                  className="w-full rounded-xl bg-neutral-950 border border-neutral-800 focus:border-[#00FFFF] focus:ring-2 focus:ring-[#00FFFF]/30 px-4 py-3 outline-none text-neutral-600 cursor-not-allowed"
                 />
               </div>
 

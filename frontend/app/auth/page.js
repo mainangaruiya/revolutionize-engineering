@@ -108,7 +108,7 @@ const Auth = () => {
 
       // Simulate a page redirect after a short delay
       setTimeout(() => {
-        window.location.href = "/"; // Redirect to the homepage
+        window.location.href = "/complete-profile"; // Redirect to the homepage
       }, 1000);
     } catch (err) {
       setLoading(false);

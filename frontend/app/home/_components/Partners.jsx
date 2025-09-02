@@ -3,10 +3,10 @@ import { motion } from "framer-motion";
 
 function PartnersSection() {
   const partners = [
-    { name: "UNICEF", logo: "/images/unicef.png" },
-    { name: "Kenyatta University", logo: "/images/ku-removebg-preview.png" },
-    { name: "MasterCard Foundation", logo: "/images/mastercard-removebg-preview.png" },
-    { name: "Royal Academy of Engineering (under the Frontier Programme)", logo: "/images/royal.png" },
+    { name: "UNICEF", logo: "/images/unicef.png", link: "https://www.unicef.org/" },
+    { name: "Kenyatta University", logo: "/images/ku-removebg-preview.png", link: "https://www.ku.ac.ke/" },
+    { name: "MasterCard Foundation", logo: "/images/mastercard-removebg-preview.png", link: "https://www.mastercard.com/" },
+    { name: "Royal Academy of Engineering (under the Frontier Programme)", logo: "/images/royal.png", link: "https://raeng.org.uk/programmes-and-prizes/programmes/international-programmes/frontiers" },
   ];
 
   return (
@@ -15,7 +15,7 @@ function PartnersSection() {
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      viewport={{ once: true, amount: 0.2 }} 
+      viewport={{ once: false, amount: 0.2 }} 
       // once: true → animates only the first time
       // amount: 0.2 → triggers when 20% of section is visible
     >
@@ -31,14 +31,14 @@ function PartnersSection() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: i * 0.2 }}
-              viewport={{ once: true, amount: 0.3 }} 
+              viewport={{ once: false, amount: 0.3 }} 
               whileHover={{ scale: 1.2 }}
             >
-              <img
+              <a href={p.link}><img
                 src={p.logo}
                 alt={p.name}
                 className="h-48 md:h-64 object-contain"
-              />
+              /></a>
             </motion.div>
           ))}
         </div>

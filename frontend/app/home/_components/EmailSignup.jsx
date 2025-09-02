@@ -66,8 +66,9 @@ const EmailSignup = () => {
         variants={containerVariants} // Apply entrance animation variants
         initial="hidden"
         whileInView="visible" // Animate when the component comes into view
-        viewport={{ once: true, amount: 0.3 }} // Animate once when 30% in view
+        viewport={{ once: false, amount: 0.2 }} // Animate once when 30% in view
         whileHover="hover" // Apply hover animation
+        transition={{ duration: 0.6, ease: "easeInOut" }}
       >
         {/* Form Title */}
         <h2 className="text-3xl md:text-4xl font-bold mb-3">

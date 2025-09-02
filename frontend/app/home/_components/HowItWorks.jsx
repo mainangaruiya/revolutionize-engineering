@@ -76,7 +76,7 @@ const HowItWorks = () => {
               variants={itemVariants} // Apply entrance animation variants here
               initial="hidden"
               whileInView="visible" // Animate when card comes into view
-              viewport={{ once: true, amount: 0.3 }} // Animate once when 30% in view
+              viewport={{ once: false, amount: 0.3 }} // Animate once when 30% in view
               whileHover="hover" // Apply hover animation here
               transition={{ delay: index * 0.2 }} // Stagger the entrance animation
             >

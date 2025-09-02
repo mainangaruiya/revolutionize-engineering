@@ -37,7 +37,7 @@ const InnovatorsGallery = () => {
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: false, amount: 0.2 }}
     >
       <div className="max-w-7xl mx-auto">
         <motion.div

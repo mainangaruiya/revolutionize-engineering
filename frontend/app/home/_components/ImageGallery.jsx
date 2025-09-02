@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+
 import {
   AiOutlineProject,
   AiOutlineFileAdd,
@@ -21,34 +22,40 @@ const ImageGallery = () => {
       alt: "Screenshot of MamaPesa app",
       caption:
         "MamaPesa: A Generative AI-powered financial inclusion app for women in Kenya.",
+      href: "/mamapesa",
     },
     {
       src: "https://placehold.co/600x400/1a1a1a/00FFFF?text=ShopOkoa",
       alt: "Screenshot of ShopOkoa platform",
       caption: "ShopOkoa: Kenya's first digital shopkeeper credit platform.",
+      href: "/shopokoa",
     },
     {
       src: "https://placehold.co/600x400/1a1a1a/00FFFF?text=Biz+Mkononi",
       alt: "Screenshot of Biz Mkononi app",
       caption:
         "Biz Mkononi: An AI-powered mobile app for SME business analytics.",
+      href: "/bizmkononi",
     },
     {
       src: "https://placehold.co/600x400/1a1a1a/00FFFF?text=Soko+Beauty",
       alt: "Screenshot of Soko Beauty app",
       caption:
         "Soko Beauty: Africa's First AI Powered Content Creation enabler in the beauty industry for Gen Zs.",
+      href: "/sokobeauty",
     },
     {
       src: "https://placehold.co/600x400/1a1a1a/00FFFF?text=Feedacomrade",
       alt: "Screenshot of Feedacomrade platform",
       caption:
         "Feedacomrade: A platform connecting students with food resources.",
+      href: "/feedacomrade",
     },
     {
       src: "https://placehold.co/600x400/1a1a1a/00FFFF?text=BeeMultiscent",
       alt: "Screenshot of BeeMultiscent smart diffuser",
       caption: "BeeMultiscent: An IoT-powered smart diffuser.",
+      href: "/beemultiscent",
     },
   ];
 
@@ -94,6 +101,7 @@ const ImageGallery = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {projects.map((project, index) => (
+            <a href={project.href}key={index}>
             <motion.div
               key={index}
               className="bg-neutral-900 rounded-2xl overflow-hidden shadow-xl cursor-pointer"
@@ -115,7 +123,7 @@ const ImageGallery = () => {
                   {project.caption}
                 </p>
               </div>
-            </motion.div>
+            </motion.div></a>
           ))}
         </div>
       </div>
