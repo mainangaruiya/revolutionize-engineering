@@ -99,20 +99,20 @@ const Footer = () => {
           <ul className="space-y-2 text-neutral-500 text-sm">
             <li className="flex items-center gap-2">
               <FaEnvelope className="text-[#00FFFF]" />
-              <a href="mailto:info@revolutionize.eng" className="hover:underline">
-                info@revolutionize.eng
+              <a href="mailto:dukatechsolutions@gmail.com" className="hover:underline">
+                dukatechsolutions@gmail.com
               </a>
             </li>
             <li className="flex items-center gap-2">
               <FaPhone className="text-[#00FFFF]" />
-              <a href="tel:+254123456789" className="hover:underline">
-                +254-123-456789
+              <a href="tel:+254743800904" className="hover:underline">
+                +254-743-800904
               </a>
             </li>
             <li className="flex items-center gap-2">
               <FaLocationDot className="text-[#00FFFF]" />
               <a href="https://www.google.com/maps" className="hover:underline">
-                3RD Floor, Chandaria Business & Innovation Center, <br />
+                2ND Floor, Chandaria Business & Innovation Center, <br />
                 Kenyatta University.
               </a>
             </li>
@@ -124,28 +124,28 @@ const Footer = () => {
           <h4 className="text-lg font-bold mb-2">Links</h4>
           <ul className="space-y-2 text-neutral-500 text-xs grid grid-cols-2 truncate">
             <li className="hover:underline">
-              <a href="">Privacy Policy</a>
+              <a href="/privacy-policy">Privacy Policy</a>
             </li>
             <li className="hover:underline">
-              <a href="">Advertise</a>
+              <a href="/advertise">Advertise</a>
             </li>
             <li className="hover:underline">
-              <a href="">Terms and Conditions</a>
+              <a href="/terms-conditions">Terms and Conditions</a>
             </li>
             <li className="hover:underline">
-              <a href="">Cookie Policy</a>
+              <a href="/cookies">Cookie Policy</a>
             </li>
             <li className="hover:underline">
-              <a href="">Accessibility Statement</a>
+              <a href="/accessibility">Accessibility Statement</a>
             </li>
             <li className="hover:underline">
-              <a href="">Help</a>
+              <a href="/faq">Help</a>
             </li>
             <li className="hover:underline">
-              <a href="">FAQ</a>
+              <a href="/faq">FAQ</a>
             </li>
             <li className="hover:underline">
-              <a href="">Manage Cookie Preferences</a>
+              <a href="/cookies">Manage Cookie Preferences</a>
             </li>
           </ul>
         </motion.div>

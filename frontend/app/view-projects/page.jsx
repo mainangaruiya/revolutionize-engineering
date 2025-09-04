@@ -23,43 +23,40 @@ export default function ViewProjects() {
   ];
 
   return (
-    <main className="min-h-screen bg-[#0A0A0A] text-white">
+    <main className="min-h-screen bg-[#EAEAEA] text-[#000000] font-sans">
       {/* Hero */}
       <section className="max-w-6xl mx-auto px-4 pt-28 pb-12">
         <div className="flex flex-col lg:flex-row items-center gap-8">
           <div className="flex-1">
-            <p className="uppercase tracking-widest text-xs text-neutral-400">
-              opportunities
-            </p>
             <h1 className="mt-2 text-4xl md:text-5xl font-extrabold leading-tight">
               Apply to Work on{" "}
-              <span className="text-[#00FFFF]">Industry Projects</span>
+              <span className="text-[#00A3A3]">Industry Projects</span>
             </h1>
-            <p className="mt-4 text-neutral-300">
+            <p className="mt-4 text-neutral-600">
               Students can apply to collaborate on real projects, gain hands-on
               experience, and contribute to industry-led solutions.
             </p>
 
             <div className="mt-6 flex flex-wrap items-center gap-3">
-              <span className="inline-flex items-center gap-2 rounded-full border border-cyan-400/40 px-3 py-1 text-sm text-cyan-300">
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#00A3A3] px-3 py-1 text-sm text-[#00A3A3]">
                 Real-world experience
               </span>
-              <span className="inline-flex items-center gap-2 rounded-full border border-cyan-400/40 px-3 py-1 text-sm text-cyan-300">
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#00A3A3] px-3 py-1 text-sm text-[#00A3A3]">
                 Mentorship
               </span>
-              <span className="inline-flex items-center gap-2 rounded-full border border-cyan-400/40 px-3 py-1 text-sm text-cyan-300">
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#00A3A3] px-3 py-1 text-sm text-[#00A3A3]">
                 Portfolio-ready work
               </span>
             </div>
           </div>
 
-          <div className="flex-1 w-full">
+          <div className="flex-1 w-full h-full">
             {/* Simple highlight card */}
-            <div className="rounded-2xl border border-neutral-800 bg-neutral-900/50 p-6">
+            <div className="rounded-2xl border border-neutral-400 bg-neutral-400/50 p-6">
               <h3 className="text-xl font-semibold">How it works</h3>
-              <ol className="mt-4 space-y-3 text-neutral-300">
+              <ol className="mt-4 space-y-3 text-neutral-700">
                 <li className="grid grid-cols-[1.5rem_1fr] gap-3">
-                  <span className="h-6 w-6 flex items-center justify-center rounded-md bg-[#00FFFF] text-black font-bold">
+                  <span className="h-6 w-6 flex items-center justify-center rounded-md bg-[#00A3A3] text-white font-bold">
                     1
                   </span>
                   <span>
@@ -68,7 +65,7 @@ export default function ViewProjects() {
                   </span>
                 </li>
                 <li className="grid grid-cols-[1.5rem_1fr] gap-3">
-                  <span className="h-6 w-6 flex items-center justify-center rounded-md bg-[#00FFFF] text-black font-bold">
+                  <span className="h-6 w-6 flex items-center justify-center rounded-md bg-[#00A3A3] text-white font-bold">
                     2
                   </span>
                   <span>
@@ -77,7 +74,7 @@ export default function ViewProjects() {
                   </span>
                 </li>
                 <li className="grid grid-cols-[1.5rem_1fr] gap-3">
-                  <span className="h-6 w-6 flex items-center justify-center rounded-md bg-[#00FFFF] text-black font-bold">
+                  <span className="h-6 w-6 flex items-center justify-center rounded-md bg-[#00A3A3] text-white font-bold">
                     3
                   </span>
                   <span>
@@ -91,9 +88,9 @@ export default function ViewProjects() {
       </section>
       <section className="max-w-6xl mx-auto px-4 pt-28 pb-12">
         <h1 className="text-4xl md:text-5xl font-extrabold">
-          Listed <span className="text-[#00FFFF]">Projects</span>
+          Listed <span className="text-[#00A3A3]">Projects</span>
         </h1>
-        <p className="mt-3 text-neutral-300">
+        <p className="mt-3 text-neutral-700">
           Browse projects and pick one that matches your skills & interests.
         </p>
 
@@ -101,21 +98,21 @@ export default function ViewProjects() {
           {projects.map((p, i) => (
             <article
               key={i}
-              className="rounded-2xl border border-neutral-800 bg-neutral-900/50 p-5 hover:border-cyan-400/40 transition"
+              className="rounded-2xl border border-neutral-300 bg-neutral-300/50 p-5 hover:border-[#00A3A3] transition"
             >
               <h3 className="font-semibold">{p.title}</h3>
-              <p className="mt-2 text-sm text-neutral-400">
+              <p className="mt-2 text-sm text-neutral-700">
                 Contribute to an industry partner project. Work in agile teams
                 and ship features.
               </p>
               <div className="mt-3">
-                <span className="text-xs rounded-md bg-cyan-400/10 text-cyan-300 px-2 py-1 border border-cyan-400/30">
+                <span className="text-xs rounded-md bg-[#00A3A3]/10 text-[#00A3A3] px-2 py-1 border border-cyan-400/30">
                   {p.tag}
                 </span>
               </div>
               <a
                 href="/apply-project"
-                className="mt-4 block text-center rounded-xl bg-[#00FFFF]/10 text-cyan-200 border border-[#00FFFF]/40 px-4 py-2 hover:bg-[#00FFFF]/20 transition"
+                className="mt-4 block text-center rounded-xl bg-[#00A3A3] text-white border border-[#00FFFF]/40 px-4 py-2 hover:bg-[#00A3A3]/60 transition"
               >
                 Apply Now
               </a>

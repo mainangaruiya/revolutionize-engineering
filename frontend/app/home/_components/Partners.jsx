@@ -11,7 +11,7 @@ function PartnersSection() {
 
   return (
     <motion.section
-      className="bg-[#FFFFFF] text-black py-16"
+      className="bg-[#FFFFFF] text-black py-4"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
@@ -20,10 +20,10 @@ function PartnersSection() {
       // amount: 0.2 → triggers when 20% of section is visible
     >
       <div className="max-w-6xl mx-auto px-4 text-center">
-        <h2 className="text-3xl font-bold mb-10">Our Partners</h2>
+        <h2 className="text-4xl font-bold mt-2">Our Partners</h2>
 
         {/* Logos grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 items-center">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 items-center">
           {partners.map((p, i) => (
             <motion.div
               key={i}
@@ -37,7 +37,7 @@ function PartnersSection() {
               <a href={p.link}><img
                 src={p.logo}
                 alt={p.name}
-                className="h-48 md:h-64 object-contain"
+                className="h-36 md:h-48 object-contain"
               /></a>
             </motion.div>
           ))}

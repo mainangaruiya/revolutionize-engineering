@@ -17,21 +17,21 @@ const CtaButtons = () => {
       icon: <AiOutlineProject size={40} className="text-[#00FFFF]" />,
       title: "View Listed Projects",
       description:
-        "Explore a wide range of innovative projects and find your next challenge.",
+        "Students can explore innovative projects across emerging technologies, learn about the objectives, required skills, and apply to work on them.",
       href: "/view-projects",
     },
     {
       icon: <MdAssignment size={40} className="text-[#00FFFF]" />,
       title: "Apply to Work",
       description:
-        "Apply for hands-on experience and collaborate on industry-led solutions.",
+        "Students can apply to work on projects, gaining real-world experience and contributing to industry-led solutions.",
       href: "/apply-project",
     },
     {
       icon: <AiOutlineFileAdd size={40} className="text-[#00FFFF]" />,
       title: "Post a Project",
       description:
-        "Industry professionals can post projects and connect with talented students.",
+        "Industry professionals, startups, and academic institutions can post projects, inviting talented students to collaborate, innovate, and contribute fresh perspectives.",
       href: "/post-project",
     },
   ];
@@ -72,36 +72,41 @@ const CtaButtons = () => {
   };
 
   return (
-    <div className="flex items-center justify-center p-16 bg-gray-50 font-sans text-gray-900">
-      <motion.div
-        className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto w-full"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: false, amount: 0.3 }}
-      >
-        {ctaItems.map((item, index) => (
-          <motion.div
-            key={index}
-            className="bg-white rounded-2xl p-8 flex flex-col items-start justify-between shadow-xl cursor-pointer"
-            variants={itemVariants}
-            whileHover="hover"
-            whileTap="tap"
-          >
-            <div className="flex items-center mb-4">
-              {item.icon}
-              <h3 className="text-2xl font-bold ml-4">{item.title}</h3>
-            </div>
-            <p className="text-gray-700 text-lg mb-6">{item.description}</p>
-            <a
-              href={item.href}
-              className="bg-[#00FFFF] text-neutral-900 font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300"
+    <div className="flex flex-col items-center bg-gray-50 font-sans text-gray-900">
+      <h2 className="text-4xl md:text-5xl font-bold text-center mb-8 mt-8">
+        How It Works
+      </h2>
+      <div className="flex items-center justify-center p-8 bg-gray-50 font-sans text-gray-900">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto w-full"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.3 }}
+        >
+          {ctaItems.map((item, index) => (
+            <motion.div
+              key={index}
+              className="bg-white rounded-2xl p-8 flex flex-col items-start justify-between shadow-xl cursor-pointer"
+              variants={itemVariants}
+              whileHover="hover"
+              whileTap="tap"
             >
-              Learn More
-            </a>
-          </motion.div>
-        ))}
-      </motion.div>
+              <div className="flex items-center mb-4">
+                {item.icon}
+                <h3 className="text-2xl font-bold ml-4">{item.title}</h3>
+              </div>
+              <p className="text-gray-700 text-lg mb-6">{item.description}</p>
+              <a
+                href={item.href}
+                className="bg-[#00FFFF] text-neutral-900 font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300"
+              >
+                Learn More
+              </a>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
     </div>
   );
 };

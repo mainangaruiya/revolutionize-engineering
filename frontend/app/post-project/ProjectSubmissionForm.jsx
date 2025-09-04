@@ -5,7 +5,7 @@ import { projectService } from "./ProjectService";
 import { projectValidation } from "./validation";
 
 const baseField =
-  "w-full px-3 py-2 rounded-md border bg-neutral-950 border-neutral-800 text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 disabled:opacity-60";
+  "w-full px-3 py-2 rounded-md border bg-neutral-300 border-neutral-300 text-neutral-800 placeholder-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#00A3A3]-500 focus:border-[#00A3A3]-500 disabled:opacity-60";
 const errorField = "border-red-500 focus:ring-red-500 focus:border-red-500";
 
 export default function ProjectSubmissionForm() {
@@ -56,30 +56,33 @@ export default function ProjectSubmissionForm() {
         return;
       }
 
-      const result = await projectService.submitProject(formData);
+      
+      const storedProjects = JSON.parse(localStorage.getItem("projects")) || [];
+      const newProject = {
+        ...formData,
+        id: Date.now(), // unique id
+        submissionDate: new Date().toISOString(),
+      };
+      storedProjects.push(newProject);
+      localStorage.setItem("projects", JSON.stringify(storedProjects));
 
-      if (result.success) {
-        setSubmitStatus("success");
-        setSubmitMessage(result.message || "Project submitted successfully!");
-        setFormData({
-          title: "",
-          description: "",
-          category: "",
-          projectUrl: "",
-          repositoryUrl: "",
-          teamSize: "",
-          startDate: "",
-          endDate: "",
-          challenges: "",
-          achievements: "",
-        });
-      } else {
-        setSubmitStatus("error");
-        setSubmitMessage(
-          result.error || "Failed to submit project. Please try again."
-        );
-        if (result.details) setErrors(result.details);
-      }
+      
+      setSubmitStatus("success");
+      setSubmitMessage("Project submitted successfully!");
+
+      // Reset form
+      setFormData({
+        title: "",
+        description: "",
+        category: "",
+        projectUrl: "",
+        repositoryUrl: "",
+        teamSize: "",
+        startDate: "",
+        endDate: "",
+        challenges: "",
+        achievements: "",
+      });
     } catch (err) {
       console.error("Form submission error:", err);
       setSubmitStatus("error");
@@ -104,16 +107,16 @@ export default function ProjectSubmissionForm() {
   }, []);
 
   return (
-    <div className="flex flex-col gap-8 mt-20 mb-20">
-      <section className="max-w-6xl mx-auto pt-28 pb-12 text-center font-sans">
-        <h1 className="text-7xl font-bold mb-4">
-          <span className="text-[#00FFFF]">Post a new Project</span>
+    <div className="flex flex-col gap-8 mt-10 mb-10 font-sans bg-[#EAEAEA]">
+      <section className="max-w-6xl mx-auto pt-8 pb-4 text-center">
+        <h1 className="text-7xl font-bold mb-4 text-black">Post a new 
+          <span className="text-[#00A3A3]"> Project</span>
         </h1>
-        <p className="text-lg text-neutral-400">
+        <p className="text-lg text-neutral-800">
           Post your project to the revolutionize community.
         </p>
       </section>
-      <div className="w-full xl:min-w-6xl max-w-xl md:max-w-3xl lg:max-w-5xl xl:max-w-6xl min-h-screen mx-auto mt-10 mb-6 p-6 rounded-xl border border-white/10 bg-neutral-900/60">
+      <div className="w-full xl:min-w-6xl max-w-xl md:max-w-3xl lg:max-w-5xl xl:max-w-6xl min-h-screen mx-auto mt-10 mb-6 p-6 rounded-xl border border-white/10 bg-[#EAEAEA]">
         <div className="text-center mb-8"></div>
         {submitStatus && (
           <div
@@ -148,8 +151,8 @@ export default function ProjectSubmissionForm() {
         >
           {/* Project Title */}
           <div className="flex flex-col">
-            <label htmlFor="title" className="font-semibold mb-2 text-gray-300">
-              Project Title <span className="text-red-400">*</span>
+            <label htmlFor="title" className="font-semibold mb-2 text-neutral-700">
+              Project Title <span className="text-red-800">*</span>
             </label>
             <input
               id="title"
@@ -162,7 +165,7 @@ export default function ProjectSubmissionForm() {
               disabled={loading}
             />
             {errors.title && (
-              <span className="text-red-400 text-sm mt-1">{errors.title}</span>
+              <span className="text-red-800 text-sm mt-1">{errors.title}</span>
             )}
           </div>
 
@@ -170,9 +173,9 @@ export default function ProjectSubmissionForm() {
           <div className="flex flex-col">
             <label
               htmlFor="description"
-              className="font-semibold mb-2 text-gray-300"
+              className="font-semibold mb-2 text-neutral-700"
             >
-              Project Description <span className="text-red-400">*</span>
+              Project Description <span className="text-red-800">*</span>
             </label>
             <textarea
               id="description"
@@ -184,11 +187,11 @@ export default function ProjectSubmissionForm() {
               placeholder="Describe your project, its purpose, and key features"
               disabled={loading}
             />
-            <div className="text-right text-sm text-gray-400 mt-1">
+            <div className="text-right text-sm text-gray-800 mt-1">
               {formData.description.length}/1000 characters
             </div>
             {errors.description && (
-              <span className="text-red-400 text-sm mt-1">
+              <span className="text-red-800 text-sm mt-1">
                 {errors.description}
               </span>
             )}
@@ -198,9 +201,9 @@ export default function ProjectSubmissionForm() {
           <div className="flex flex-col">
             <label
               htmlFor="category"
-              className="font-semibold mb-2 text-gray-300"
+              className="font-semibold mb-2 text-neutral-700"
             >
-              Project Category <span className="text-red-400">*</span>
+              Project Category <span className="text-red-800">*</span>
             </label>
             <select
               id="category"
@@ -226,7 +229,7 @@ export default function ProjectSubmissionForm() {
               <option value="other">Transport & Mobility</option>
             </select>
             {errors.category && (
-              <span className="text-red-400 text-sm mt-1">
+              <span className="text-red-800 text-sm mt-1">
                 {errors.category}
               </span>
             )}
@@ -237,9 +240,9 @@ export default function ProjectSubmissionForm() {
             <div className="flex flex-col">
               <label
                 htmlFor="projectUrl"
-                className="font-semibold mb-2 text-gray-300"
+                className="font-semibold mb-2 text-neutral-700"
               >
-                Project URL <span className="text-red-400">*</span>
+                Project URL <span className="text-red-800">*</span>
               </label>
               <input
                 id="projectUrl"
@@ -254,7 +257,7 @@ export default function ProjectSubmissionForm() {
                 disabled={loading}
               />
               {errors.projectUrl && (
-                <span className="text-red-400 text-sm mt-1">
+                <span className="text-red-800 text-sm mt-1">
                   {errors.projectUrl}
                 </span>
               )}
@@ -263,7 +266,7 @@ export default function ProjectSubmissionForm() {
             <div className="flex flex-col">
               <label
                 htmlFor="repositoryUrl"
-                className="font-semibold mb-2 text-gray-300"
+                className="font-semibold mb-2 text-neutral-700"
               >
                 Repository URL
               </label>
@@ -280,7 +283,7 @@ export default function ProjectSubmissionForm() {
                 disabled={loading}
               />
               {errors.repositoryUrl && (
-                <span className="text-red-400 text-sm mt-1">
+                <span className="text-red-800 text-sm mt-1">
                   {errors.repositoryUrl}
                 </span>
               )}
@@ -292,9 +295,9 @@ export default function ProjectSubmissionForm() {
             <div className="flex flex-col">
               <label
                 htmlFor="teamSize"
-                className="font-semibold mb-2 text-gray-300"
+                className="font-semibold mb-2 text-neutral-700"
               >
-                Team Size <span className="text-red-400">*</span>
+                Team Size <span className="text-red-800">*</span>
               </label>
               <input
                 id="teamSize"
@@ -309,7 +312,7 @@ export default function ProjectSubmissionForm() {
                 disabled={loading}
               />
               {errors.teamSize && (
-                <span className="text-red-400 text-sm mt-1">
+                <span className="text-red-800 text-sm mt-1">
                   {errors.teamSize}
                 </span>
               )}
@@ -318,7 +321,7 @@ export default function ProjectSubmissionForm() {
             <div className="flex flex-col">
               <label
                 htmlFor="startDate"
-                className="font-semibold mb-2 text-gray-300"
+                className="font-semibold mb-2 text-neutral-700"
               >
                 Start Date
               </label>
@@ -336,7 +339,7 @@ export default function ProjectSubmissionForm() {
             <div className="flex flex-col">
               <label
                 htmlFor="endDate"
-                className="font-semibold mb-2 text-gray-300"
+                className="font-semibold mb-2 text-neutral-700"
               >
                 End Date
               </label>
@@ -356,7 +359,7 @@ export default function ProjectSubmissionForm() {
           <div className="flex flex-col">
             <label
               htmlFor="challenges"
-              className="font-semibold mb-2 text-gray-300"
+              className="font-semibold mb-2 text-neutral-700"
             >
               Challenges Faced
             </label>
@@ -375,7 +378,7 @@ export default function ProjectSubmissionForm() {
           <div className="flex flex-col">
             <label
               htmlFor="achievements"
-              className="font-semibold mb-2 text-gray-300"
+              className="font-semibold mb-2 text-neutral-700"
             >
               Key Achievements
             </label>
@@ -396,7 +399,7 @@ export default function ProjectSubmissionForm() {
             <button
               type="submit"
               disabled={loading}
-              className="w-[95%] flex items-center justify-center gap-2 rounded-[20px] bg-[#00ffff] text-neutral-900 font-bold px-6 py-3 transition hover:opacity-80 disabled:opacity-60"
+              className="w-[95%] flex items-center justify-center gap-2 rounded-[20px] bg-[#00A3A3] text-white font-bold px-6 py-3 transition hover:opacity-80 disabled:opacity-60"
             >
               {loading && (
                 <span className="h-5 w-5 inline-block border-2 border-black/30 border-t-black rounded-full animate-spin" />

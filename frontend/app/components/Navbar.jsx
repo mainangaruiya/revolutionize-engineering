@@ -44,7 +44,7 @@ const Navbar = () => {
     { name: "Projects", href: "#projects" },
     { name: "Events", href: "#events" },
     { name: "Partners", href: "#partners" },
-    { name: "About", href: "#about" },
+    { name: "About", href: "#cta" },
   ];
 
   const menuVariants = {
@@ -57,13 +57,25 @@ const Navbar = () => {
   };
 
   const BarsIcon = ({ size = 24 }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+    >
       <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path>
     </svg>
   );
 
   const TimesIcon = ({ size = 24 }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+    >
       <path
         d="m16.192 6.31-4.243 4.242-4.242-4.242-1.414 1.414 
                4.242 4.243-4.242 4.242 1.414 1.414 
@@ -85,12 +97,18 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
           <a href="/home" className="flex items-center gap-3">
-            <img src="/images/logo.png" alt="Logo" className="h-10 w-10 rounded-full object-cover" />
-            <span className="text-2xl font-bold tracking-wide">Revolutionize Engineering</span>
+            <img
+              src="/images/logo.png"
+              alt="Logo"
+              className="h-10 w-10 rounded-full object-cover"
+            />
+            <span className="text-2xl font-bold tracking-wide">
+              Revolutionize Engineering
+            </span>
           </a>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-4 text-sm">
             {navLinks.map((link, index) => (
               <motion.a
                 key={index}
@@ -106,46 +124,11 @@ const Navbar = () => {
               <>
                 <motion.a
                   href="/post-project"
-                  className="relative inline-flex items-center gap-2 bg-[#0A0A0A] text-neutral-100 font-bold py-2 px-6 rounded-full transition-colors duration-300"
-                  whileHover={{ scale: 1.1 }}
+                  className="bg-[#00FFFF] text-neutral-900 font-bold py-2 px-6 rounded-full transition-colors duration-300 hover:bg-white"
+                  whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  onMouseEnter={() => setTooltipVisible(true)}
-                  onMouseLeave={() => setTooltipVisible(false)}
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    className="transition-colors duration-300 hover:fill-[#00FFFF]"
-                  >
-                    <path
-                      d="M12 2c5.514 0 10 4.486 10 10s-4.486 
-                 10-10 10-10-4.486-10-10 
-                 4.486-10 10-10zm0-2c-6.627 0-12 
-                 5.373-12 12s5.373 12 12 12 
-                 12-5.373 12-12-5.373-12-12-12zm6 
-                 13h-5v5h-2v-5h-5v-2h5v-5h2v5h5v2z"
-                    />
-                  </svg>
-
-                  {/* Tooltip with AnimatePresence */}
-                  <AnimatePresence>
-                    {tooltipVisible && (
-                      <motion.span
-                        initial={{ opacity: 0, y: 8 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 8 }}
-                        transition={{ duration: 0.25 }}
-                        className="absolute top-full left-1/2 -translate-x-1/2 mt-2 
-              bg-neutral-900 text-neutral-300 text-xs font-normal 
-              px-3 py-1 rounded-md whitespace-nowrap shadow-lg"
-                      >
-                        Post a new project
-                      </motion.span>
-                    )}
-                  </AnimatePresence>
+                  Post a Project
                 </motion.a>
 
                 {/* Profile + dropdown */}
@@ -154,16 +137,16 @@ const Navbar = () => {
                     onClick={() => setShowUserMenu(!showUserMenu)}
                     className="flex items-center gap-2 font-bold hover:text-[#00FFFF]"
                   >
-                    <span>{user.name}</span>
                     <img
                       src={user.profilePic || "/images/R.png"}
                       alt="Profile"
                       className="w-8 h-8 rounded-full object-cover border border-neutral-600"
                     />
+                    <span>{user.name?.split(" ").slice(0, 2).join(" ")}</span>
                   </button>
 
                   {showUserMenu && (
-                    <div className="absolute right-0 top-full mt-2 bg-black text-white rounded shadow-lg w-40 hover:text-black">
+                    <div className="absolute right-0 top-full mt-2 bg-black text-white rounded shadow-lg w-40 hover:text-[#00A3A3]">
                       <Link
                         href="/user-profile"
                         className="block w-full text-left px-4 py-2 hover:bg-gray-200"
