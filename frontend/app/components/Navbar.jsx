@@ -41,10 +41,11 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: "Projects", href: "#projects" },
-    { name: "Events", href: "#events" },
-    { name: "Partners", href: "#partners" },
-    { name: "About", href: "#cta" },
+    { name: "Home", href: "/home" },
+    { name: "Projects", href: "/home#projects" },
+    { name: "Events", href: "/home#events" },
+    { name: "Partners", href: "/home#partners" },
+    { name: "About", href: "/home#cta" },
   ];
 
   const menuVariants = {
@@ -124,7 +125,7 @@ const Navbar = () => {
               <>
                 <motion.a
                   href="/post-project"
-                  className="bg-[#00FFFF] text-neutral-900 font-bold py-2 px-6 rounded-full transition-colors duration-300 hover:bg-white"
+                  className="bg-[#00FFFF] text-neutral-900 font-bold py-2 px-4 rounded-full transition-colors duration-300 hover:bg-white"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -142,7 +143,14 @@ const Navbar = () => {
                       alt="Profile"
                       className="w-8 h-8 rounded-full object-cover border border-neutral-600"
                     />
-                    <span>{user.name?.split(" ").slice(0, 2).join(" ")}</span>
+                    <span className="flex flex-col leading-tight">
+                      {user.name
+                        ?.split(" ")
+                        .slice(0, 2)
+                        .map((part, i) => (
+                          <span key={i}>{part}</span>
+                        ))}
+                    </span>
                   </button>
 
                   {showUserMenu && (
@@ -218,7 +226,9 @@ const Navbar = () => {
                     Post a Project
                   </a>
                   <div className="flex flex-col items-center gap-4">
-                    <span className="text-white text-2xl">{user.name}</span>
+                    <span className="text-white text-2xl">
+                      {user.name?.split(" ").slice(0, 2).join(" ")}
+                    </span>
                     <Link
                       href="/user-profile"
                       className="text-[#00FFFF] text-lg"
