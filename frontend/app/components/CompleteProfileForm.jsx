@@ -25,10 +25,10 @@ function Step1({
           <img
             src={profilePic}
             alt="Profile Preview"
-            className="w-32 h-32 rounded-full object-cover border-4 border-[#00FFFF] shadow-lg mb-4"
+            className="w-32 h-32 rounded-full object-cover border-4 border-[#00A3A3] shadow-lg mb-4"
           />
         ) : (
-          <div className="w-32 h-32 rounded-full bg-neutral-950 flex items-center justify-center mb-4 text-gray-500 border-2 border-dashed border-neutral-600">
+          <div className="w-32 h-32 rounded-full bg-neutral-450 flex items-center justify-center mb-4 text-gray-700 border-2 border-dashed border-neutral-600">
             <span className="text-sm">No Image</span>
           </div>
         )}
@@ -41,49 +41,49 @@ function Step1({
         />
         <label
           htmlFor="profile-upload"
-          className="cursor-pointer px-4 py-2 bg-[#00FFFF] text-black text-sm font-medium rounded-full shadow-md hover:bg-cyan-400 transition"
+          className="cursor-pointer px-4 py-2 bg-[#00A3A3] text-white text-sm font-medium rounded-full shadow-md hover:bg-[#00A3A3]-400 transition"
         >
           {profilePic ? "Change Profile Picture" : "Upload Profile Picture"}
         </label>
-        <p className="text-xs text-gray-400 mt-2">JPG/PNG/GIF, up to ~2MB.</p>
+        <p className="text-xs text-gray-900 mt-2">JPG/PNG/GIF, up to ~2MB.</p>
       </div>
 
       {/* Name & Email (read-only) */}
       <div>
-        <label className="block text-gray-400 mb-2">Full Name</label>
+        <label className="block text-neutral-700 mb-2">Full Name</label>
         <input
           type="text"
           value={user?.name || ""}
           readOnly
-          className="w-full p-3 rounded-lg bg-neutral-950 border border-neutral-700 text-neutral-400 cursor-not-allowed"
+          className="w-full p-3 rounded-lg bg-neutral-400 border border-neutral-300 text-neutral-700 cursor-not-allowed"
         />
       </div>
       <div>
-        <label className="block text-gray-400 mb-2">Email</label>
+        <label className="block text-neutral-700 mb-2">Email</label>
         <input
           type="text"
           value={user?.email || ""}
           readOnly
-          className="w-full p-3 rounded-lg bg-neutral-950 border border-neutral-700 text-neutral-400 cursor-not-allowed"
+          className="w-full p-3 rounded-lg bg-neutral-400 border border-neutral-300 text-neutral-700 cursor-not-allowed"
         />
       </div>
 
       {/* Phone / Gender / DOB / Location */}
       <div>
-        <label className="block text-gray-400 mb-2">Phone</label>
+        <label className="block text-neutral-700 mb-2">Phone</label>
         <input
           type="text"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
-          className="w-full p-3 rounded-lg bg-neutral-950 border border-neutral-700 text-white focus:outline-none focus:ring-2 focus:ring-[#00FFFF] focus:border-transparent"
+          className="w-full p-3 rounded-lg bg-neutral-250 border border-neutral-400 text-black focus:outline-none focus:ring-2 focus:ring-[#00A3A3] focus:border-transparent"
         />
       </div>
       <div>
-        <label className="block text-gray-400 mb-2">Gender</label>
+        <label className="block text-neutral-700 mb-2">Gender</label>
         <select
           value={gender}
           onChange={(e) => setGender(e.target.value)}
-          className="w-full p-3 rounded-lg bg-neutral-950 border border-neutral-700 text-white focus:outline-none focus:ring-2 focus:ring-[#00FFFF] focus:border-transparent"
+          className="w-full p-3 rounded-lg bg-neutral-250 border border-neutral-400 text-black focus:outline-none focus:ring-2 focus:ring-[#00A3A3] focus:border-transparent"
         >
           <option value="">Select...</option>
           <option>Male</option>
@@ -93,21 +93,21 @@ function Step1({
         </select>
       </div>
       <div>
-        <label className="block text-gray-400 mb-2">Date of Birth</label>
+        <label className="block text-neutral-700 mb-2">Date of Birth</label>
         <input
           type="date"
           value={dob}
           onChange={(e) => setDob(e.target.value)}
-          className="w-full p-3 rounded-lg bg-neutral-950 border border-neutral-700 text-white focus:outline-none focus:ring-2 focus:ring-[#00FFFF] focus:border-transparent"
+          className="w-full p-3 rounded-lg bg-neutral-250 border border-neutral-400 text-black focus:outline-none focus:ring-2 focus:ring-[#00A3A3] focus:border-transparent"
         />
       </div>
       <div>
-        <label className="block text-gray-400 mb-2">Location</label>
+        <label className="block text-neutral-700 mb-2">Location</label>
         <input
           type="text"
           value={location}
           onChange={(e) => setLocation(e.target.value)}
-          className="w-full p-3 rounded-lg bg-neutral-950 border border-neutral-700 text-white focus:outline-none focus:ring-2 focus:ring-[#00FFFF] focus:border-transparent"
+          className="w-full p-3 rounded-lg bg-neutral-250 border border-neutral-400 text-black focus:outline-none focus:ring-2 focus:ring-[#00A3A3] focus:border-transparent"
         />
       </div>
     </>
@@ -127,40 +127,40 @@ function Step2({
   return (
     <>
       <div>
-        <label className="block text-gray-400 mb-2">Occupation</label>
+        <label className="block text-neutral-700 mb-2">Occupation</label>
         <input
           type="text"
           value={occupation}
           onChange={(e) => setOccupation(e.target.value)}
-          className="w-full p-3 rounded-lg bg-neutral-950 border border-neutral-700 text-white focus:outline-none focus:ring-2 focus:ring-[#00FFFF] focus:border-transparent"
+          className="w-full p-3 rounded-lg bg-neutral-250 border border-neutral-400 text-black focus:outline-none focus:ring-2 focus:ring-[#00A3A3] focus:border-transparent"
         />
       </div>
       <div>
-        <label className="block text-gray-400 mb-2">Company</label>
+        <label className="block text-neutral-700 mb-2">Company</label>
         <input
           type="text"
           value={company}
           onChange={(e) => setCompany(e.target.value)}
-          className="w-full p-3 rounded-lg bg-neutral-950 border border-neutral-700 text-white focus:outline-none focus:ring-2 focus:ring-[#00FFFF] focus:border-transparent"
+          className="w-full p-3 rounded-lg bg-neutral-250 border border-neutral-400 text-black focus:outline-none focus:ring-2 focus:ring-[#00A3A3] focus:border-transparent"
         />
       </div>
       <div>
-        <label className="block text-gray-400 mb-2">Education</label>
+        <label className="block text-neutral-700 mb-2">Education</label>
         <input
           type="text"
           value={education}
           onChange={(e) => setEducation(e.target.value)}
           placeholder="e.g. BSc Computer Science"
-          className="w-full p-3 rounded-lg bg-neutral-950 border border-neutral-700 text-white focus:outline-none focus:ring-2 focus:ring-[#00FFFF] focus:border-transparent"
+          className="w-full p-3 rounded-lg bg-neutral-250 border border-neutral-400 text-black focus:outline-none focus:ring-2 focus:ring-[#00A3A3] focus:border-transparent"
         />
       </div>
       <div>
-        <label className="block text-gray-400 mb-2">Experience (years)</label>
+        <label className="block text-neutral-700 mb-2">Experience (years)</label>
         <input
           type="number"
           value={experience}
           onChange={(e) => setExperience(e.target.value)}
-          className="w-full p-3 rounded-lg bg-neutral-950 border border-neutral-700 text-white focus:outline-none focus:ring-2 focus:ring-[#00FFFF] focus:border-transparent"
+          className="w-full p-3 rounded-lg bg-neutral-250 border border-neutral-400 text-black focus:outline-none focus:ring-2 focus:ring-[#00A3A3] focus:border-transparent"
         />
       </div>
     </>
@@ -180,7 +180,7 @@ function Step3({
   return (
     <>
       <div className="md:col-span-2">
-        <label className="block text-gray-400 mb-2">
+        <label className="block text-neutral-700 mb-2">
           Skills (comma separated)
         </label>
         <input
@@ -188,37 +188,37 @@ function Step3({
           value={skills}
           onChange={(e) => setSkills(e.target.value)}
           placeholder="JavaScript, React, SQL"
-          className="w-full p-3 rounded-lg bg-neutral-950 border border-neutral-700 text-white focus:outline-none focus:ring-2 focus:ring-[#00FFFF] focus:border-transparent"
+          className="w-full p-3 rounded-lg bg-neutral-250 border border-neutral-400 text-black focus:outline-none focus:ring-2 focus:ring-[#00A3A3] focus:border-transparent"
         />
       </div>
       <div>
-        <label className="block text-gray-400 mb-2">LinkedIn</label>
+        <label className="block text-neutral-700 mb-2">LinkedIn</label>
         <input
           type="url"
           value={linkedin}
           onChange={(e) => setLinkedin(e.target.value)}
           placeholder="https://linkedin.com/in/username"
-          className="w-full p-3 rounded-lg bg-neutral-950 border border-neutral-700 text-white focus:outline-none focus:ring-2 focus:ring-[#00FFFF] focus:border-transparent"
+          className="w-full p-3 rounded-lg bg-neutral-250 border border-neutral-400 text-black focus:outline-none focus:ring-2 focus:ring-[#00A3A3] focus:border-transparent"
         />
       </div>
       <div>
-        <label className="block text-gray-400 mb-2">GitHub</label>
+        <label className="block text-neutral-700 mb-2">GitHub</label>
         <input
           type="url"
           value={github}
           onChange={(e) => setGithub(e.target.value)}
           placeholder="https://github.com/username"
-          className="w-full p-3 rounded-lg bg-neutral-950 border border-neutral-700 text-white focus:outline-none focus:ring-2 focus:ring-[#00FFFF] focus:border-transparent"
+          className="w-full p-3 rounded-lg bg-neutral-250 border border-neutral-400 text-black focus:outline-none focus:ring-2 focus:ring-[#00A3A3] focus:border-transparent"
         />
       </div>
       <div className="md:col-span-2">
-        <label className="block text-gray-400 mb-2">Portfolio / Website</label>
+        <label className="block text-neutral-700 mb-2">Portfolio / Website</label>
         <input
           type="url"
           value={portfolio}
           onChange={(e) => setPortfolio(e.target.value)}
           placeholder="https://myportfolio.com"
-          className="w-full p-3 rounded-lg bg-neutral-950 border border-neutral-700 text-white focus:outline-none focus:ring-2 focus:ring-[#00FFFF] focus:border-transparent"
+          className="w-full p-3 rounded-lg bg-neutral-250 border border-neutral-400 text-black focus:outline-none focus:ring-2 focus:ring-[#00A3A3] focus:border-transparent"
         />
       </div>
     </>
@@ -229,16 +229,16 @@ function Step4({ bio, setBio, interests, setInterests }) {
   return (
     <>
       <div className="md:col-span-2">
-        <label className="block text-gray-400 mb-2">Bio</label>
+        <label className="block text-neutral-700 mb-2">Bio</label>
         <textarea
           value={bio}
           onChange={(e) => setBio(e.target.value)}
           rows="3"
-          className="w-full p-3 rounded-lg bg-neutral-950 border border-neutral-700 text-white focus:outline-none focus:ring-2 focus:ring-[#00FFFF] focus:border-transparent"
+          className="w-full p-3 rounded-lg bg-neutral-250 border border-neutral-400 text-black focus:outline-none focus:ring-2 focus:ring-[#00A3A3] focus:border-transparent"
         />
       </div>
       <div className="md:col-span-2">
-        <label className="block text-gray-400 mb-2">
+        <label className="block text-neutral-700 mb-2">
           Interests (comma separated)
         </label>
         <input
@@ -246,7 +246,7 @@ function Step4({ bio, setBio, interests, setInterests }) {
           value={interests}
           onChange={(e) => setInterests(e.target.value)}
           placeholder="Football, Coding, Reading"
-          className="w-full p-3 rounded-lg bg-neutral-950 border border-neutral-700 text-white focus:outline-none focus:ring-2 focus:ring-[#00FFFF] focus:border-transparent"
+          className="w-full p-3 rounded-lg bg-neutral-250 border border-neutral-400 text-black focus:outline-none focus:ring-2 focus:ring-[#00A3A3] focus:border-transparent"
         />
       </div>
     </>
@@ -335,34 +335,34 @@ export default function CompleteProfilePage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col gap-8 items-center justify-center bg-[#0A0A0A] p-6">
+    <div className="min-h-screen flex flex-col gap-8 items-center justify-center bg-[#EAEAEA] p-6">
       <section className="max-w-6xl mx-auto pt-28 pb-6 text-center font-sans">
         <h1 className="text-5xl md:text-7xl font-bold mb-4">
-          <span className="text-[#00FFFF]">Complete Your Profile</span>
+          <span className="text-[#00A3A3]">Complete Your Profile</span>
         </h1>
-        <p className="text-lg text-neutral-400 mb-6">
+        <p className="text-lg text-neutral-700 mb-6">
           Step {step} of 4 —{" "}
-          <span className="text-[#00FFFF]">{stepTitles[step - 1]}</span>
+          <span className="text-[#00A3A3]">{stepTitles[step - 1]}</span>
         </p>
 
         {/* Progress Bar */}
         <div className="w-full max-w-3xl mx-auto">
-          <div className="relative w-full h-2 bg-neutral-800 rounded-full overflow-hidden">
+          <div className="relative w-full h-2 bg-neutral-300 rounded-full overflow-hidden">
             <div
-              className="absolute top-0 left-0 h-full bg-[#00FFFF] transition-all duration-1000"
+              className="absolute top-0 left-0 h-full bg-[#00A3A3] transition-all duration-1000"
               style={{ width: `${(step / 4) * 100}%` }}
             />
           </div>
-          <div className="flex justify-between mt-2 text-sm text-gray-400">
-            <span className={step >= 1 ? "text-[#00FFFF]" : ""}>Step 1</span>
-            <span className={step >= 2 ? "text-[#00FFFF]" : ""}>Step 2</span>
-            <span className={step >= 3 ? "text-[#00FFFF]" : ""}>Step 3</span>
-            <span className={step >= 4 ? "text-[#00FFFF]" : ""}>Step 4</span>
+          <div className="flex justify-between mt-2 text-sm text-gray-600">
+            <span className={step >= 1 ? "text-[#00A3A3]" : ""}>Step 1</span>
+            <span className={step >= 2 ? "text-[#00A3A3]" : ""}>Step 2</span>
+            <span className={step >= 3 ? "text-[#00A3A3]" : ""}>Step 3</span>
+            <span className={step >= 4 ? "text-[#00A3A3]" : ""}>Step 4</span>
           </div>
         </div>
       </section>
 
-      <div className="bg-neutral-900/60 p-8 rounded-xl shadow-lg w-full max-w-7xl text-white border border-neutral-700 mb-20">
+      <div className="bg-neutral-300/60 p-8 rounded-xl shadow-lg w-full max-w-7xl text-white border border-neutral-300 mb-20">
         <form
           onSubmit={handleSubmit}
           className="grid grid-cols-1 md:grid-cols-2 gap-6"
@@ -421,7 +421,7 @@ export default function CompleteProfilePage() {
               <button
                 type="button"
                 onClick={() => setStep(step - 1)}
-                className="px-6 py-2 rounded-full border border-neutral-600 text-neutral-300 hover:bg-neutral-800 transition"
+                className="px-6 py-2 rounded-full border border-neutral-300 bg-neutral-800 text-neutral-300 hover:bg-neutral-300 transition"
               >
                 Back
               </button>
@@ -430,14 +430,14 @@ export default function CompleteProfilePage() {
               <button
                 type="button"
                 onClick={() => setStep(step + 1)}
-                className="ml-auto px-6 py-2 rounded-full font-bold text-neutral-900 bg-[#00FFFF] hover:bg-[#00AAAA] transition"
+                className="ml-auto px-6 py-2 rounded-full font-bold text-white bg-[#00A3A3] hover:bg-[#00AAAA] transition"
               >
                 Next
               </button>
             ) : (
               <button
                 type="submit"
-                className="ml-auto px-6 py-2 rounded-full font-bold text-neutral-900 bg-[#00FFFF] hover:bg-[#00AAAA] transition"
+                className="ml-auto px-6 py-2 rounded-full font-bold text-white bg-[#00A3A3] hover:bg-[#00AAAA] transition"
               >
                 Save & Finish
               </button>

@@ -15,19 +15,15 @@ const Home = () => {
         <Hero />
       </section>
 
-      <section id="projects" className="scroll-mt-20">
-        <HowItWorks />
+      <section id="cta" className="scroll-mt-20">
+        <CtaButtons />
       </section>
 
       <section id="innovators" className="scroll-mt-20">
         <InnovatorsGallery />
       </section>
 
-      <section id="cta" className="scroll-mt-20">
-        <CtaButtons />
-      </section>
-
-      <section id="events" className="scroll-mt-20">
+      <section id="projects" className="scroll-mt-20">
         <ImageGallery />
       </section>
 
@@ -35,7 +31,7 @@ const Home = () => {
         <PartnersSection />
       </section>
 
-      <section id="about" className="scroll-mt-20">
+      <section id="events" className="scroll-mt-20">
         <EmailSignup />
       </section>
     </>

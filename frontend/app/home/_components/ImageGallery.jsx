@@ -2,128 +2,125 @@
 
 import { motion } from "framer-motion";
 
-import {
-  AiOutlineProject,
-  AiOutlineFileAdd,
-  MdAssignment,
-} from "react-icons/ai";
-
-/**
- * A React component that displays a gallery of past project images
- * with captions. Designed for the "Revolutionize Engineering" platform
- * following the "Futuristic Horizon" theme, it features a responsive
- * grid layout, dynamic animations, and clear typography.
- */
 const ImageGallery = () => {
-  // Data for the image gallery items, including placeholder image sources.
   const projects = [
     {
-      src: "https://placehold.co/600x400/1a1a1a/00FFFF?text=MamaPesa",
+      src: "/images/mamapesa.png",
       alt: "Screenshot of MamaPesa app",
-      caption:
-        "MamaPesa: A Generative AI-powered financial inclusion app for women in Kenya.",
-      href: "/mamapesa",
+      caption: (
+        <>
+          <span className="text-cyan-400 font-semibold text-lg">MamaPesa:</span>{" "}
+          <span className="text-neutral-400">
+            Generative AI-powered financial inclusion app for women in Kenya.
+          </span>
+        </>
+      ),
+      href: "/success-projects/mamapesa",
     },
     {
-      src: "https://placehold.co/600x400/1a1a1a/00FFFF?text=ShopOkoa",
+      src: "/images/img_asset14shopokoa.png",
       alt: "Screenshot of ShopOkoa platform",
-      caption: "ShopOkoa: Kenya's first digital shopkeeper credit platform.",
-      href: "/shopokoa",
+      caption: (
+        <>
+          <span className="text-cyan-400 font-semibold text-lg">ShopOkoa:</span>{" "}
+          <span className="text-neutral-400">
+            Kenya's first digital shopkeeper credit platform.
+          </span>
+        </>
+      ),
+      href: "/success-projects/shopokoa",
     },
     {
-      src: "https://placehold.co/600x400/1a1a1a/00FFFF?text=Biz+Mkononi",
-      alt: "Screenshot of Biz Mkononi app",
-      caption:
-        "Biz Mkononi: An AI-powered mobile app for SME business analytics.",
-      href: "/bizmkononi",
-    },
-    {
-      src: "https://placehold.co/600x400/1a1a1a/00FFFF?text=Soko+Beauty",
+      src: "/images/soko-beauty.png",
       alt: "Screenshot of Soko Beauty app",
-      caption:
-        "Soko Beauty: Africa's First AI Powered Content Creation enabler in the beauty industry for Gen Zs.",
-      href: "/sokobeauty",
+      caption: (
+        <>
+          <span className="text-cyan-400 font-semibold text-lg">Soko Beauty:</span>{" "}
+          <span className="text-neutral-400">
+            Africa's first AI-powered content creation enabler in the beauty
+            industry for Gen Zs.
+          </span>
+        </>
+      ),
+      href: "/success-projects/sokobeauty",
     },
     {
-      src: "https://placehold.co/600x400/1a1a1a/00FFFF?text=Feedacomrade",
+      src: "/images/feed-comrade.png",
       alt: "Screenshot of Feedacomrade platform",
-      caption:
-        "Feedacomrade: A platform connecting students with food resources.",
-      href: "/feedacomrade",
-    },
-    {
-      src: "https://placehold.co/600x400/1a1a1a/00FFFF?text=BeeMultiscent",
-      alt: "Screenshot of BeeMultiscent smart diffuser",
-      caption: "BeeMultiscent: An IoT-powered smart diffuser.",
-      href: "/beemultiscent",
+      caption: (
+        <>
+          <span className="text-cyan-400 font-semibold text-lg">Feed a Comrade:</span>{" "}
+          <span className="text-neutral-400">
+            A platform connecting students with food resources.
+          </span>
+        </>
+      ),
+      href: "/success-projects/feedacomrade",
     },
   ];
 
-  // Animation variants for the container to fade in the entire section.
   const containerVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        delayChildren: 0.3,
-        staggerChildren: 0.2,
-      },
+      transition: { delayChildren: 0.3, staggerChildren: 0.2 },
     },
   };
 
-  // Animation variants for each individual image card.
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
     visible: { y: 0, opacity: 1 },
     hover: {
-      scale: 1.03,
-      boxShadow: "0 0 25px rgba(0, 255, 255, 0.4)",
-      transition: {
-        duration: 0.3,
-        ease: "easeInOut",
-      },
+      scale: 1.05,
+      boxShadow: "0 8px 25px rgba(0, 255, 255, 0.2)",
+      transition: { duration: 0.3, ease: "easeInOut" },
     },
   };
 
   return (
     <motion.section
-      className="bg-[#0A0A0A] px-4 py-20 font-serif text-white"
+      className="bg-[#0A0A0A] px-6 py-12 font-sans text-white"
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
     >
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-white">
+        <h2 className="text-3xl md:text-5xl font-bold text-center mb-5 text-white tracking-tight">
           Success Stories
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {projects.map((project, index) => (
-            <a href={project.href}key={index}>
-            <motion.div
-              key={index}
-              className="bg-neutral-900 rounded-2xl overflow-hidden shadow-xl cursor-pointer"
-              variants={itemVariants}
-              whileHover="hover"
-            >
-              <img
-                src={project.src}
-                alt={project.alt}
-                className="w-full h-64 object-cover"
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src =
-                    "https://placehold.co/600x400/666666/ffffff?text=Image+Error";
-                }}
-              />
-              <div className="p-6">
-                <p className="text-lg text-neutral-300 leading-relaxed">
-                  {project.caption}
-                </p>
-              </div>
-            </motion.div></a>
+            <a href={project.href} key={index}>
+              <motion.div
+                variants={itemVariants}
+                whileHover="hover"
+                className="group bg-gradient-to-b from-neutral-900 to-neutral-950 h-full rounded-2xl overflow-hidden shadow-lg cursor-pointer transform transition-all duration-300 hover:-translate-y-2"
+              >
+                {/* Image */}
+                <div className="relative w-full h-56 overflow-hidden">
+                  <img
+                    src={project.src}
+                    alt={project.alt}
+                    className="w-full h-full object-fit group-hover:scale-110 transition-transform duration-500 bg-white"
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src =
+                        "https://placehold.co/600x400/666666/ffffff?text=Image+Error";
+                    }}
+                  />
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-70 group-hover:opacity-90 transition duration-300"></div>
+                </div>
+
+                {/* Text */}
+                <div className="p-5">
+                  <p className="text-sm leading-relaxed">{project.caption}</p>
+                </div>
+              </motion.div>
+            </a>
           ))}
         </div>
       </div>
