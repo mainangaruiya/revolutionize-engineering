@@ -53,7 +53,7 @@ export default function MamaPesaPage() {
           AI-powered financial inclusion app for women in Kenya, helping them
           access credit, manage savings, and build stronger futures.
         </p>
-        <p className="text-lg font-bold mt-4"><a href="https://www.mamapesa.co.ke/" className="text-white bg-[#00A3A3] px-4 py-2 rounded-lg">Visit MamaPesa</a></p>
+        <p className="text-lg font-bold mt-4"><a href="https://www.mamapesa.com/" className="text-white bg-[#00A3A3] px-4 py-2 rounded-lg">Visit MamaPesa</a></p>
       </motion.div>
 
       {/* Features Section */}
