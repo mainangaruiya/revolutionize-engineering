@@ -16,11 +16,13 @@ router.post('/', auth, async (req, res) => {
       return res.status(400).json({ message: 'Application ID and content are required' });
     }
 
+     // Check if the application exists
     const application = await Application.findById(applicationId);
     if (!application) {
       return res.status(404).json({ message: 'Application not found' });
     }
 
+    //comments creation
     const comment = await Comment.create({
       application: applicationId,
       user: req.user.id,
@@ -28,6 +30,32 @@ router.post('/', auth, async (req, res) => {
     });
 
     res.status(201).json(comment);
+  } catch (err) {
+    res.status(500).json({ message: 'Server error', error: err.message });
+  }
+});
+
+// POST /api/comments/ :id/request-update post approval
+router.post('/:id/request-update', auth, async (req, res) => {
+  try {
+    const comment = await Comment.findById(req.params.id).populate('application');
+    if (!comment) {
+      return res.status(404).json({ message: 'Comment not found' });
+    }
+
+    // Only owner or admin can request update
+    if (!isOwnerOrAdmin(req.user.id, comment.user, req.user.role)) {
+      return res.status(403).json({ message: 'Access denied' });
+    }
+
+    // Only allow if application is approved
+    if (comment.application.status !== 'approved') {
+      return res.status(400).json({ message: 'Update request only allowed for approved applications' });
+    }
+
+    // Logic to handle update request (notify admin)
+    // For simplicity, we'll just return a success message here
+    res.json({ message: 'Update request submitted. An admin will review your request.' });
   } catch (err) {
     res.status(500).json({ message: 'Server error', error: err.message });
   }
@@ -54,9 +82,14 @@ router.put('/:id', auth, async (req, res) => {
       return res.status(400).json({ message: 'Content is required' });
     }
 
-    const comment = await Comment.findById(req.params.id);
+    const comment = await Comment.findById(req.params.id).populate('application');
     if (!comment) {
       return res.status(404).json({ message: 'Comment not found' });
+    }
+
+    // Block editing if application is approved
+    if (comment.application.status === 'approved') {
+      return res.status(403).json({ message: 'Cannot edit comment after application approval' });
     }
 
     if (!isOwnerOrAdmin(req.user.id, comment.user, req.user.role)) {
