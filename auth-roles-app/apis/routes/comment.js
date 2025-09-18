@@ -35,7 +35,7 @@ router.post('/', auth, async (req, res) => {
   }
 });
 
-// POST /api/comments/ :id/request-update post approval
+// POST /api/comments/ :id/request-update post approval .
 router.post('/:id/request-update', auth, async (req, res) => {
   try {
     const comment = await Comment.findById(req.params.id).populate('application');
