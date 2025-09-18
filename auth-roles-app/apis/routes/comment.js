@@ -104,7 +104,7 @@ router.put('/:id', auth, async (req, res) => {
   }
 });
 
-// DELETE /api/comments/:id - Delete comment
+// DELETE /api/comments/:id - Delete comment //
 router.delete('/:id', auth, async (req, res) => {
   try {
     const comment = await Comment.findById(req.params.id);
